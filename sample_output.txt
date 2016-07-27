@@ -1,0 +1,214 @@
+(6893) $ cargo run
+     Running `target/debug/rps`
+Enter choice (r,p,s) or q to quit > 
+r
+Player chose: Rock
+Opponent chose: Scissors
+You win!
+Enter choice (r,p,s) or q to quit > 
+q
+Player Stats:
+Wins: 1 (100.00%)
+Ties: 0 (0.00%)
+Losses: 0 (0.00%)
+Rocks: 1
+Papers: 0
+Scissors: 0
+
+-----------------
+
+(6893) $ cargo run
+     Running `target/debug/rps`
+Enter choice (r,p,s) or q to quit > 
+p
+Player chose: Paper
+Opponent chose: Scissors
+You lose!
+Enter choice (r,p,s) or q to quit > 
+r
+Player chose: Rock
+Opponent chose: Scissors
+You win!
+Enter choice (r,p,s) or q to quit > 
+p
+Player chose: Paper
+Opponent chose: Paper
+It's a tie!
+Enter choice (r,p,s) or q to quit > 
+p
+Player chose: Paper
+Opponent chose: Scissors
+You lose!
+Enter choice (r,p,s) or q to quit > 
+p
+Player chose: Paper
+Opponent chose: Rock
+You win!
+Enter choice (r,p,s) or q to quit > 
+q
+Player Stats:
+Wins: 2 (40.00%)
+Ties: 1 (20.00%)
+Losses: 2 (40.00%)
+Rocks: 1
+Papers: 4
+Scissors: 0
+
+(6893) $ cargo run
+     Running `target/debug/rps`
+Enter choice (r,p,s) or q to quit > 
+r
+Player chose: Rock
+Opponent chose: Scissors
+You win!
+Enter choice (r,p,s) or q to quit > 
+r
+Player chose: Rock
+Opponent chose: Paper
+You lose!
+Enter choice (r,p,s) or q to quit > 
+r
+Player chose: Rock
+Opponent chose: Scissors
+You win!
+Enter choice (r,p,s) or q to quit > 
+r
+Player chose: Rock
+Opponent chose: Rock
+It's a tie!
+Enter choice (r,p,s) or q to quit > 
+s
+Player chose: Scissors
+Opponent chose: Paper
+You win!
+Enter choice (r,p,s) or q to quit > 
+p
+Player chose: Paper
+Opponent chose: Rock
+You win!
+Enter choice (r,p,s) or q to quit > 
+q
+Player Stats:
+Wins: 4 (66.67%)
+Ties: 1 (16.67%)
+Losses: 1 (16.67%)
+Rocks: 4
+Papers: 1
+Scissors: 1
+
+------------
+
+(6893) $ cargo run
+     Running `target/debug/rps`
+Enter choice (r,p,s) or q to quit > 
+q
+Player Stats:
+Wins: 0 (0.00%)
+Ties: 0 (0.00%)
+Losses: 0 (0.00%)
+Rocks: 0
+Papers: 0
+Scissors: 0
+
+-------------
+
+(6893) $ cargo run
+     Running `target/debug/rps`
+Enter choice (r,p,s) or q to quit > 
+s
+Player chose: Scissors
+Opponent chose: Rock
+You lose!
+Enter choice (r,p,s) or q to quit > 
+s
+Player chose: Scissors
+Opponent chose: Scissors
+It's a tie!
+Enter choice (r,p,s) or q to quit > 
+s
+Player chose: Scissors
+Opponent chose: Scissors
+It's a tie!
+Enter choice (r,p,s) or q to quit > 
+r
+Player chose: Rock
+Opponent chose: Rock
+It's a tie!
+Enter choice (r,p,s) or q to quit > 
+p
+Player chose: Paper
+Opponent chose: Paper
+It's a tie!
+Enter choice (r,p,s) or q to quit > 
+s
+Player chose: Scissors
+Opponent chose: Scissors
+It's a tie!
+Enter choice (r,p,s) or q to quit > 
+s
+Player chose: Scissors
+Opponent chose: Rock
+You lose!
+Enter choice (r,p,s) or q to quit > 
+s
+Player chose: Scissors
+Opponent chose: Rock
+You lose!
+Enter choice (r,p,s) or q to quit > 
+s
+Player chose: Scissors
+Opponent chose: Rock
+You lose!
+Enter choice (r,p,s) or q to quit > 
+s
+Player chose: Scissors
+Opponent chose: Paper
+You win!
+Enter choice (r,p,s) or q to quit > 
+r
+Player chose: Rock
+Opponent chose: Scissors
+You win!
+Enter choice (r,p,s) or q to quit > 
+s
+Player chose: Scissors
+Opponent chose: Paper
+You win!
+Enter choice (r,p,s) or q to quit > 
+s
+Player chose: Scissors
+Opponent chose: Scissors
+It's a tie!
+Enter choice (r,p,s) or q to quit > 
+nbjkegr
+Please enter r, p, s, or q!!!!!
+Enter choice (r,p,s) or q to quit > 
+gernl
+Please enter r, p, s, or q!!!!!
+Enter choice (r,p,s) or q to quit > 
+nher;k
+Please enter r, p, s, or q!!!!!
+Enter choice (r,p,s) or q to quit > 
+nhekt;
+Please enter r, p, s, or q!!!!!
+Enter choice (r,p,s) or q to quit > 
+opt5nipty5hnipthipt4hipt4ehiotehoterhoer
+Please enter r, p, s, or q!!!!!
+Enter choice (r,p,s) or q to quit > 
+quit
+Please enter r, p, s, or q!!!!!
+Enter choice (r,p,s) or q to quit > 
+exit
+Please enter r, p, s, or q!!!!!
+Enter choice (r,p,s) or q to quit > 
+ARGH WHAT DO I PRESS
+Please enter r, p, s, or q!!!!!
+Enter choice (r,p,s) or q to quit > 
+q
+Player Stats:
+Wins: 3 (23.08%)
+Ties: 6 (46.15%)
+Losses: 4 (30.77%)
+Rocks: 2
+Papers: 1
+Scissors: 10
