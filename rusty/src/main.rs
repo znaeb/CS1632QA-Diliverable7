@@ -28,6 +28,11 @@ struct Stats {
     papers: u32,
     scissors: u32
 }
+struct MinStats {
+    rocks: u32,
+    papers: u32,
+    scissors: u32
+}
 fn get_a_string() -> Result<String, Error> {
     println!("Enter choice (r,p,s) or q to quit >");
     let mut to_return = String::new();
@@ -58,89 +63,53 @@ fn new_stats()->Stats {
 }
 
 fn main() {
-	let mut hist: [[Stats; 3]; 3] = [
+	let mut hist: [[MinStats; 3]; 3] = [
 		[
-			Stats {
-				games: 0,
-				wins: 0,
-				losses: 0,
-				ties: 0,
+			MinStats {
 				rocks: 0,
 				papers: 0,
 				scissors: 0,
 			},
-			Stats {
-				games: 0,
-				wins: 0,
-				losses: 0,
-				ties: 0,
+			MinStats {
 				rocks: 0,
 				papers: 0,
 				scissors: 0,
 			},
-			Stats {
-				games: 0,
-				wins: 0,
-				losses: 0,
-				ties: 0,
+			MinStats {
 				rocks: 0,
 				papers: 0,
 				scissors: 0,
 			},
 		],
 		[
-			Stats {
-				games: 0,
-				wins: 0,
-				losses: 0,
-				ties: 0,
+			MinStats {
 				rocks: 0,
 				papers: 0,
 				scissors: 0,
 			},
-			Stats {
-				games: 0,
-				wins: 0,
-				losses: 0,
-				ties: 0,
+			MinStats {
 				rocks: 0,
 				papers: 0,
 				scissors: 0,
 			},
-			Stats {
-				games: 0,
-				wins: 0,
-				losses: 0,
-				ties: 0,
+			MinStats {
 				rocks: 0,
 				papers: 0,
 				scissors: 0,
 			},
 		],
 		[
-			Stats {
-				games: 0,
-				wins: 0,
-				losses: 0,
-				ties: 0,
+			MinStats {
 				rocks: 0,
 				papers: 0,
 				scissors: 0,
 			},
-			Stats {
-				games: 0,
-				wins: 0,
-				losses: 0,
-				ties: 0,
+			MinStats {
 				rocks: 0,
 				papers: 0,
 				scissors: 0,
 			},
-			Stats {
-				games: 0,
-				wins: 0,
-				losses: 0,
-				ties: 0,
+			MinStats {
 				rocks: 0,
 				papers: 0,
 				scissors: 0,
@@ -149,7 +118,9 @@ fn main() {
 	];
 	//let mut game_stats: Stats = empty_stats(game_stats);
 	let mut game_stats=new_stats();
-	
+	let mut past_rocks=0;
+	let mut past_papers=0;
+	let mut past_scissors=01;
 	//Gnome { height: 100, weight: 200 };
 
 	//loop start?
@@ -189,27 +160,82 @@ fn main() {
 		}
 		if valid_input{
 			game_stats.games += 1;
-			let mut first_index;
-			let mut second_index;
+			let mut first_index=0;
+			let mut second_index=0;
 			let mut current_index;
 			let mut computer_index;
+			let mut need_history=true;
 			match last_hand{
 				Hand::Rock=>second_index=0,
 				Hand::Paper=>second_index=1,
 				Hand::Scissors=>second_index=2,
-				Hand::Empty=>second_index=-1,
+				Hand::Empty=>need_history=false,
 			}
 			match two_hands_ago{
 				Hand::Rock=>first_index=0,
 				Hand::Paper=>first_index=1,
 				Hand::Scissors=>first_index=2,
-				Hand::Empty=>first_index=-1,
+				Hand::Empty=>need_history=false,
 			}
 			two_hands_ago=last_hand;
 			last_hand=current_hand;
 			computer_hand = Hand::Empty;
-			if second_index>-1 && first_index>-1{
+			if need_history{
 				//need to get and set history
+				//first need to check history to see past actions
+				//let mut rand_hand;
+				past_rocks=hist[first_index][second_index].rocks;
+				past_papers=hist[first_index][second_index].papers;
+				past_scissors=hist[first_index][second_index].scissors;
+				if past_rocks==past_papers && past_rocks==past_scissors{
+					//do fully random
+					let mut rand_hand;
+					rand_hand = rand::thread_rng().gen_range(0, 3);
+					if rand_hand==0{
+						computer_hand = Hand::Rock;
+					}else if rand_hand==1{
+						computer_hand = Hand::Paper;
+					}else if rand_hand==2{
+						computer_hand = Hand::Scissors;
+					}
+				}else if past_rocks>past_papers&&past_rocks>past_scissors{
+					//the player mostly chose rock following the last two hands
+					//try to give it paper cuts!
+					computer_hand = Hand::Paper;
+				}else if past_papers>past_rocks&&past_papers>past_scissors{
+					//the player mostly chose paper following the last two hands
+					//try to slice it up!
+					computer_hand = Hand::Scissors;
+				}else if past_scissors>past_rocks&&past_scissors>past_papers{
+					//the player mostly chose scissors following the last two hands
+					//try to smash it with a rock!
+					computer_hand = Hand::Rock;
+				}else if past_rocks>past_papers&&past_rocks==past_scissors{
+					//rocks and scissors are the majority
+					//choose rock, because it would either win or tie
+					computer_hand = Hand::Rock;
+				}else if past_rocks>past_scissors&&past_rocks==past_papers{
+					//rocks and papers are the majority
+					//choose paper, because it would either win or tie
+					computer_hand = Hand::Paper;
+				}else if past_scissors>past_rocks&&past_scissors==past_papers{
+					//scissors and papers are the majority
+					//choose scissors, because it would either win or tie
+					computer_hand = Hand::Scissors;
+				}else{
+					println!("Something is very wrong with the AI...(run)");
+					computer_hand = Hand::Empty;
+				}
+								
+				//set history,
+				match current_hand{
+					Hand::Rock=>hist[first_index][second_index].rocks+=1,
+					Hand::Paper=>hist[first_index][second_index].papers+=1,
+					Hand::Scissors=>hist[first_index][second_index].scissors+=1,
+					Hand::Empty=>println!("Run, run, as fast as you can, you can't escape from the homocidal AI"),
+				}
+				
+				
 			}else{
 				//rand w/o tracking
 				let mut rand_hand;
@@ -221,20 +247,22 @@ fn main() {
 				}else if rand_hand==2{
 					computer_hand = Hand::Scissors;
 				}
-
 			}
 			match current_hand{
 				Hand::Rock=>{
 					println!("Player chose: Rock");
 					current_index=0;
+					game_stats.rocks+=1;
 				}
 				Hand::Paper=>{
 					println!("Player chose: Paper");
 					current_index=1;
+					game_stats.papers+=1;
 				}
 				Hand::Scissors=>{
 					println!("Player chose: Scissors");
 					current_index=2;
+					game_stats.scissors+=1;
 				}
 				Hand::Empty=>{
 					println!("Something Broke");
@@ -259,7 +287,6 @@ fn main() {
 					computer_index=-1;
 				}
 			}
-			
 			if current_index==computer_index{
 				//if there is a tie
 				println!("It's a tie!");
@@ -277,10 +304,6 @@ fn main() {
 				println!("Something went horribly wrong!!!!");
 			}
 		}
-		//match s{
-			//String::from("r") => println!("rock!"),
-		//}
-		//println!("s = {}", s);
 	
 	
 	}//loop end
@@ -343,7 +366,4 @@ fn main() {
 		println!("Papers: {}",game_stats.papers);
 		println!("Scissors: {}",game_stats.scissors);
 	}
-    //println!("pop");
-	//let a=hist[0][0].wins;
-	//println!("a = {}",a);
 }
