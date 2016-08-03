@@ -234,8 +234,6 @@ fn main() {
 					Hand::Scissors=>hist[first_index][second_index].scissors+=1,
 					Hand::Empty=>println!("Run, run, as fast as you can, you can't escape from the homocidal AI"),
 				}
-				
-				
 			}else{
 				//rand w/o tracking
 				let mut rand_hand;
@@ -307,43 +305,6 @@ fn main() {
 	
 	
 	}//loop end
-	
-	/*let mut h=[[Stats{wins=0, losses=0, ties=0, rocks=0, papers=0, scissors=0}; 3]; 3];
-	for j in 0..3 {
-		for k in 0..3 {
-			empty_stats(&mut h[j][k])
-		}
-	}
-	
-	
-	*/
-	//= History { past: [[Stats; 3]; 3]; };
-
-    // 3x3 array of all Empty
-    /*
-	let mut b = [[Hand::Empty; 3]; 3];
-	let mut rand_row;
-	let mut rand_col;
-    for j in 0..100 {
-		rand_row = rand::thread_rng().gen_range(0, 3);
-		rand_col = rand::thread_rng().gen_range(0, 3);
-		if j%2==0{
-			b[rand_row][rand_col] = Hand::X;
-		}else{
-			b[rand_row][rand_col] = Hand::O;
-		}
-		for l in 0..3 {
-			for k in 0..3 {
-				match b[l][k] {
-					Hand::Empty => print!("."), 
-					Hand::X => print!("X"), 
-					Hand::O => print!("O"), 
-				}
-			}
-			println!("");
-		}
-		println!("");
-	}*/
 	
 	println!("Player Stats:");
 	if game_stats.games==0{
