@@ -11,14 +11,6 @@ enum Hand {
 	Empty
 }
 
-struct Previous {
-    one: Hand,
-    two: Hand
-}
-fn iterate_last(mut prev: &mut Previous, new_hand: Hand) {
-    prev.two = prev.one;
-    prev.one = new_hand;
-}
 struct Stats {
     games: u32,
     wins: u32,
@@ -40,16 +32,6 @@ fn get_a_string() -> Result<String, Error> {
     Ok(to_return)
 }
 
-
-fn empty_stats(mut stat: &mut Stats) {
-	stat.games =0;
-    stat.wins = 0;
-    stat.losses = 0;
-    stat.ties = 0;
-    stat.rocks = 0;
-    stat.papers = 0;
-    stat.scissors = 0;
-}
 fn new_stats()->Stats {
 	//stat.games =0;
     //stat.wins = 0;
@@ -118,9 +100,9 @@ fn main() {
 	];
 	//let mut game_stats: Stats = empty_stats(game_stats);
 	let mut game_stats=new_stats();
-	let mut past_rocks=0;
-	let mut past_papers=0;
-	let mut past_scissors=01;
+	let mut past_rocks;
+	let mut past_papers;
+	let mut past_scissors;
 	//Gnome { height: 100, weight: 200 };
 
 	//loop start?
@@ -128,14 +110,14 @@ fn main() {
 	let mut current_hand: Hand = Hand::Empty;
 	let mut last_hand: Hand = Hand::Empty;
 	let mut two_hands_ago: Hand = Hand::Empty;
-	let mut computer_hand: Hand = Hand::Empty;
+	let mut computer_hand;
 	while menu_loop{
 		let mut valid_input=false;
-		let mut s;
+		let s;
 		match get_a_string() {
 			Ok(n) => s = n,
 			Err(n) => {
-			    println!("ERROR COULD NOT READ!");
+			    println!("ERROR COULD NOT READ! {}",n);
 				s = String::from("ERROR");
 			}
 		}
@@ -162,8 +144,8 @@ fn main() {
 			game_stats.games += 1;
 			let mut first_index=0;
 			let mut second_index=0;
-			let mut current_index;
-			let mut computer_index;
+			let current_index;
+			let computer_index;
 			let mut need_history=true;
 			match last_hand{
 				Hand::Rock=>second_index=0,
@@ -183,13 +165,12 @@ fn main() {
 			if need_history{
 				//need to get and set history
 				//first need to check history to see past actions
-				//let mut rand_hand;
 				past_rocks=hist[first_index][second_index].rocks;
 				past_papers=hist[first_index][second_index].papers;
 				past_scissors=hist[first_index][second_index].scissors;
 				if past_rocks==past_papers && past_rocks==past_scissors{
 					//do fully random
-					let mut rand_hand;
+					let rand_hand;
 					rand_hand = rand::thread_rng().gen_range(0, 3);
 					if rand_hand==0{
 						computer_hand = Hand::Rock;
@@ -236,7 +217,7 @@ fn main() {
 				}
 			}else{
 				//rand w/o tracking
-				let mut rand_hand;
+				let rand_hand;
 				rand_hand = rand::thread_rng().gen_range(0, 3);
 				if rand_hand==0{
 					computer_hand = Hand::Rock;
