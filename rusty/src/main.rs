@@ -45,6 +45,17 @@ fn empty_stats(mut stat: &mut Stats) {
     stat.papers = 0;
     stat.scissors = 0;
 }
+fn new_stats()->Stats {
+	//stat.games =0;
+    //stat.wins = 0;
+    //stat.losses = 0;
+    //stat.ties = 0;
+    //stat.rocks = 0;
+    //stat.papers = 0;
+    //stat.scissors = 0;
+	let stat: Stats = Stats { games: 0, wins: 0 , losses: 0 , ties: 0 , rocks: 0 , papers: 0 , scissors: 0 };
+	return stat;
+}
 
 fn main() {
 	let mut hist: [[Stats; 3]; 3] = [
@@ -136,7 +147,9 @@ fn main() {
 			},
 		],
 	];
-	let game_stats: Stats = empty_stats(game_stats);
+	//let mut game_stats: Stats = empty_stats(game_stats);
+	let mut game_stats=new_stats();
+	
 	//Gnome { height: 100, weight: 200 };
 
 	//loop start?
@@ -175,10 +188,11 @@ fn main() {
 			println!("invalid input!");
 		}
 		if valid_input{
-			let mut first_index=-1;
-			let mut second_index=-1;
-			let mut current_index=-1;
-			let mut computer_index=-1;
+			game_stats.games += 1;
+			let mut first_index;
+			let mut second_index;
+			let mut current_index;
+			let mut computer_index;
 			match last_hand{
 				Hand::Rock=>second_index=0,
 				Hand::Paper=>second_index=1,
@@ -249,12 +263,15 @@ fn main() {
 			if current_index==computer_index{
 				//if there is a tie
 				println!("It's a tie!");
+				game_stats.ties += 1;
 			}else if (current_index==0&&computer_index==2)||(current_index==1&&computer_index==0)||(current_index==2&&computer_index==1){
 				//if the player wins
 				println!("You win!");
+				game_stats.wins += 1;
 			}else if(current_index==0&&computer_index==1)||(current_index==1&&computer_index==2)||(current_index==2&&computer_index==0){
 				//if the player loses
 				println!("You lose!");
+				game_stats.losses += 1;
 			}else{
 				//something went horribly wrong!!!
 				println!("Something went horribly wrong!!!!");
@@ -304,7 +321,29 @@ fn main() {
 		}
 		println!("");
 	}*/
-    println!("pop");
-	let a=hist[0][0].wins;
-	println!("a = {}",a);
+	
+	println!("Player Stats:");
+	if game_stats.games==0{
+		//println!("Wins: 0 (0.00%)\nWins: 0 (0.00%)");
+		println!("Wins: 0 (0.00%)");
+		println!("Ties: 0 (0.00%)");
+		println!("Losses: 0 (0.00%)");
+		println!("Rocks: 0");
+		println!("Papers: 0");
+		println!("Scissors: 0");
+	}else{
+		//not dividing by zero!!
+		let win_percent: f32 = 100.0*((game_stats.wins as f32)/ (game_stats.games as f32));
+		let loss_percent: f32 = 100.0*((game_stats.losses as f32)/ (game_stats.games as f32));
+		let tie_percent: f32 = 100.0*((game_stats.ties as f32)/ (game_stats.games as f32));
+		println!("Wins: {} ({:.2}%)",game_stats.wins,win_percent);
+		println!("Ties: {} ({:.2}%)",game_stats.ties,tie_percent);
+		println!("Losses: {} ({:.2}%)",game_stats.losses,loss_percent);
+		println!("Rocks: {}",game_stats.rocks);
+		println!("Papers: {}",game_stats.papers);
+		println!("Scissors: {}",game_stats.scissors);
+	}
+    //println!("pop");
+	//let a=hist[0][0].wins;
+	//println!("a = {}",a);
 }
